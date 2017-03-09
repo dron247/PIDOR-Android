@@ -7,4 +7,20 @@ import com.applepride.pidor.base.Router;
  */
 
 public final class ExampleRouter implements Router {
+    //блин, это не роутер, а кодинжектор получается :(
+
+
+    //регистрируем активитю и пихаем резолвер и для какого класса его отдавать
+    public <E extends BaseResolver> void register(Class<?> recipientClazz, E resolver) {
+        //
+    }
+
+    //в роутируемом классе коннектимся к роутеру и получаем доступ к ручке, которую закинули при регистрации
+    public <E extends BaseResolver> E connect(Class<?> clazz) {
+        return null;
+    }
+
+    public void resolve(Class<?> clazz) {
+        //
+    }
 }
