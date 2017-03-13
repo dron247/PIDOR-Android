@@ -1,5 +1,5 @@
 # PIDOR-Android
-This is an example realization of an AppPride's iOS application architecture for android. **The project under heavy development. Please be patient.**
+This is an example implementation of an AppPride's iOS application architecture for android. **The project under heavy development. Please be patient.**
 ## What PIDOR means:
 **P** - *Presenter*, just conventional presenter, like it's prototype in MVP architecture
 
