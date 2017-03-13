@@ -5,4 +5,9 @@ package com.applepride.pidor.base;
  */
 
 public interface IPresenter {
+    <E extends IDecorator> void bind(E decorator);
+
+    void unbind();
+
+    boolean isAttached();
 }

@@ -20,7 +20,7 @@ public final class Module1Router extends BaseRouter implements IModule1Router {
     }
 
     @Override
-    public void openModule2() {
+    public void openScreen2() {
         Intent intent = new Intent(context, Module2Activity.class);
         context.startActivity(intent);
     }

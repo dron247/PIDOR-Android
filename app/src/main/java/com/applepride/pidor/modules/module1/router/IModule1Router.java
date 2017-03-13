@@ -9,5 +9,5 @@ import com.applepride.pidor.base.IRouter;
 public interface IModule1Router extends IRouter {
     void openDialog(String title, String message);
 
-    void openModule2();
+    void openScreen2();
 }
