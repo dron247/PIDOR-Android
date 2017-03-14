@@ -1,6 +1,5 @@
 package com.applepride.pidor.modules.module1.interactor;
 
-import com.applepride.pidor.base.IInteractor;
 import com.applepride.pidor.base.InteractorListener;
 import com.applepride.pidor.model.object.TodoItem;
 import com.applepride.pidor.model.repository.IExampleRepository;
@@ -13,7 +12,7 @@ import java.util.List;
  * Created by dron on 13.03.17.
  */
 
-public final class LoadTodoItemsInteractor implements IInteractor<Object, List<TodoListItem>> {
+public final class LoadTodoItemsInteractor implements ILoadTodoItemsInteractor {
     IExampleRepository<TodoItem> repository;
 
     public LoadTodoItemsInteractor(IExampleRepository<TodoItem> repository) {

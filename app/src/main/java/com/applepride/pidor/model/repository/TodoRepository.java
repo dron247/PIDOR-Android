@@ -11,12 +11,16 @@ import java.util.List;
  */
 public final class TodoRepository implements IExampleRepository {
 
-    List<RepositoryChangedListener> listeners = new ArrayList<>();
-    List<TodoItem> items;
-    int counter = 0;
+    private List<RepositoryChangedListener> listeners = new ArrayList<>();
+    private List<TodoItem> items;
+    private int counter = 0;
 
-    private TodoRepository() {
+    public TodoRepository() {
         items = new ArrayList<>();
+        items.add(new TodoItem(0, "GET MILK"));
+        items.add(new TodoItem(1, "PICK PAYCHECK"));
+        items.add(new TodoItem(2, "UNCLE DAVE'S B DAY"));
+        items.add(new TodoItem(3, "GO TO CLINIC"));
     }
 
     public static IExampleRepository create() {
@@ -44,6 +48,7 @@ public final class TodoRepository implements IExampleRepository {
     public void addItem(String value) {
         counter++;
         TodoItem todoItem = new TodoItem(counter, value);
+        items.add(todoItem);
     }
 
     @Override

@@ -7,6 +7,8 @@ import com.applepride.pidor.base.IPresenter;
  */
 
 public interface IModule1Presenter extends IPresenter {
+    void loadItems();
+
     void onNavigateAway();
 
     void onShowExampleDialog();
