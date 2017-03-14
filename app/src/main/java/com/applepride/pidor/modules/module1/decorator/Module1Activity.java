@@ -2,9 +2,14 @@ package com.applepride.pidor.modules.module1.decorator;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.applepride.pidor.App;
 import com.applepride.pidor.R;
@@ -26,6 +31,7 @@ public class Module1Activity extends AppCompatActivity implements Module1Decorat
     IModule1Presenter presenter;
     Button buttonDialog;
     Button buttonModule2;
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +73,15 @@ public class Module1Activity extends AppCompatActivity implements Module1Decorat
             }
         });
 
+        recyclerView = (RecyclerView) findViewById(R.id.items_list);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        // update data, it's just an illustration
+        // consider subscription to model layer
+        // messages inside presenter
         presenter.loadItems();
     }
 
@@ -81,8 +96,79 @@ public class Module1Activity extends AppCompatActivity implements Module1Decorat
     @Override
     public void setItems(List<TodoListItem> items) {
         // populate list
-        for (TodoListItem item : items) {
-            Log.d("TEST", item.getText());
+        recyclerView.setAdapter(null);
+        recyclerView.setLayoutManager(null);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        ExampleAdapter adapter = new ExampleAdapter(items);
+        recyclerView.setAdapter(adapter);
+        adapter.setOnClickListener(new ExampleAdapter.ClickListener() {
+            @Override
+            public void onItemClick(TodoListItem item) {
+                Toast.makeText(Module1Activity.this, item.getText(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+    static class ExampleAdapter extends RecyclerView.Adapter<ExampleAdapter.ViewHolder> {
+        List<TodoListItem> items;
+        ClickListener clickListener;
+
+        ExampleAdapter(List<TodoListItem> items) {
+            this.items = items;
+            setHasStableIds(true);
+        }
+
+        public void setOnClickListener(ClickListener listener) {
+            clickListener = listener;
+        }
+
+        @Override
+        public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+            View v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.row_todo, parent, false);
+
+            return new ViewHolder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(final ViewHolder holder, int position) {
+            TodoListItem item = getItem(position);
+            holder.id = item.getId();
+            holder.text.setText(item.getText());
+            holder.container.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (clickListener != null) {
+                        clickListener.onItemClick(getItem(holder.id));
+                    }
+                }
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return items.size();
+        }
+
+        private TodoListItem getItem(int position) {
+            return items.get(position);
+        }
+
+        interface ClickListener {
+            void onItemClick(TodoListItem item);
+        }
+
+        class ViewHolder extends RecyclerView.ViewHolder {
+            int id;
+            TextView text;
+            View container;
+
+            ViewHolder(View itemView) {
+                super(itemView);
+                container = itemView.findViewById(R.id.row_todo_container);
+                text = (TextView) itemView.findViewById(R.id.row_todo_label);
+            }
         }
     }
 }
