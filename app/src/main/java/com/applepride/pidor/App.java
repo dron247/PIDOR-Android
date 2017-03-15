@@ -32,8 +32,4 @@ public final class App extends Application {
         rp.register(Module2Activity.class, Module2Router.class);
     }
 
-    @Override
-    public void onTerminate() {
-        super.onTerminate();
-    }
 }
