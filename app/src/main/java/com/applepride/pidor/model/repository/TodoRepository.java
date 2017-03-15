@@ -17,10 +17,10 @@ public final class TodoRepository implements IExampleRepository {
 
     public TodoRepository() {
         items = new ArrayList<>();
-        items.add(new TodoItem(0, "GET MILK"));
-        items.add(new TodoItem(1, "PICK PAYCHECK"));
-        items.add(new TodoItem(2, "UNCLE DAVE'S B DAY"));
-        items.add(new TodoItem(3, "GO TO CLINIC"));
+        items.add(new TodoItem(counter++, "GET MILK"));
+        items.add(new TodoItem(counter++, "PICK PAYCHECK"));
+        items.add(new TodoItem(counter++, "UNCLE DAVE'S B DAY"));
+        items.add(new TodoItem(counter++, "GO TO CLINIC"));
     }
 
     public static IExampleRepository create() {
