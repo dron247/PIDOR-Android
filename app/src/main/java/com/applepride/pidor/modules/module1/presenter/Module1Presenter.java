@@ -2,7 +2,7 @@ package com.applepride.pidor.modules.module1.presenter;
 
 import com.applepride.pidor.base.IDecorator;
 import com.applepride.pidor.base.InteractorListener;
-import com.applepride.pidor.modules.module1.decorator.Module1Decorator;
+import com.applepride.pidor.modules.module1.decorator.IModule1Decorator;
 import com.applepride.pidor.modules.module1.interactor.ILoadTodoItemsInteractor;
 import com.applepride.pidor.modules.module1.object.TodoListItem;
 import com.applepride.pidor.modules.module1.router.IModule1Router;
@@ -14,7 +14,7 @@ import java.util.List;
  */
 
 public final class Module1Presenter implements IModule1Presenter {
-    private Module1Decorator decorator = null;
+    private IModule1Decorator decorator = null;
     private IModule1Router router;
     private ILoadTodoItemsInteractor interactor;
 
@@ -25,7 +25,7 @@ public final class Module1Presenter implements IModule1Presenter {
 
     @Override
     public <E extends IDecorator> void bind(E decorator) {
-        this.decorator = (Module1Decorator) decorator;
+        this.decorator = (IModule1Decorator) decorator;
     }
 
     @Override

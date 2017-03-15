@@ -1,5 +1,6 @@
 package com.applepride.pidor.modules.module2.router;
 
+import android.app.Activity;
 import android.content.Context;
 
 import com.applepride.pidor.router.BaseRouter;
@@ -13,12 +14,12 @@ public final class Module2Router extends BaseRouter implements IModule2Router {
     }
 
     @Override
-    public void openDialog(String title, String message) {
-        super.showBasicDialog(title, message);
+    public void setContext(Context context) {
+        super.setContext(context);
     }
 
     @Override
-    public void setContext(Context context) {
-        super.setContext(context);
+    public void close(Activity activity) {
+        activity.finish();
     }
 }

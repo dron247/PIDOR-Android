@@ -1,5 +1,7 @@
 package com.applepride.pidor.modules.module2.router;
 
+import android.app.Activity;
+
 import com.applepride.pidor.base.IRouter;
 
 /**
@@ -7,6 +9,6 @@ import com.applepride.pidor.base.IRouter;
  */
 
 public interface IModule2Router extends IRouter {
-    void openDialog(String title, String message);
 
+    void close(Activity activity);
 }

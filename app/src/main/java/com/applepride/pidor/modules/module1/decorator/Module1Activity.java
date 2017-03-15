@@ -26,7 +26,7 @@ import com.applepride.pidor.router.RouterProvider;
 
 import java.util.List;
 
-public class Module1Activity extends AppCompatActivity implements Module1Decorator {
+public class Module1Activity extends AppCompatActivity implements IModule1Decorator {
     IModule1Router router;
     IModule1Presenter presenter;
     Button buttonDialog;
@@ -48,7 +48,7 @@ public class Module1Activity extends AppCompatActivity implements Module1Decorat
             e.printStackTrace();
         }
 
-        IExampleRepository<TodoItem> repository = new TodoRepository();
+        IExampleRepository<TodoItem> repository = TodoRepository.instance(); // DO NOT DO THIS IN REAL CODE!!!!
         ILoadTodoItemsInteractor loadTodoItemsInteractor = new LoadTodoItemsInteractor(repository);
         presenter = new Module1Presenter(router, loadTodoItemsInteractor);
         presenter.bind(this);

@@ -11,11 +11,12 @@ import java.util.List;
  */
 public final class TodoRepository implements IExampleRepository {
 
+    private static TodoRepository _instance;
     private List<RepositoryChangedListener> listeners = new ArrayList<>();
     private List<TodoItem> items;
     private int counter = 0;
 
-    public TodoRepository() {
+    private TodoRepository() {
         items = new ArrayList<>();
         items.add(new TodoItem(counter++, "GET MILK"));
         items.add(new TodoItem(counter++, "PICK PAYCHECK"));
@@ -23,8 +24,19 @@ public final class TodoRepository implements IExampleRepository {
         items.add(new TodoItem(counter++, "GO TO CLINIC"));
     }
 
-    public static IExampleRepository create() {
-        return new TodoRepository();
+    public static IExampleRepository instance() {
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
+        if (_instance == null) {
+            _instance = new TodoRepository();
+        }
+        return _instance;
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
+        // DO NOT DO THIS IN REAL CODE!!!!
     }
 
     @Override
@@ -49,6 +61,9 @@ public final class TodoRepository implements IExampleRepository {
         counter++;
         TodoItem todoItem = new TodoItem(counter, value);
         items.add(todoItem);
+        for (RepositoryChangedListener listener : listeners) {
+            listener.onChanged();
+        }
     }
 
     @Override

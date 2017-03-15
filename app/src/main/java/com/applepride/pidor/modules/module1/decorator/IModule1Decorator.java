@@ -9,6 +9,6 @@ import java.util.List;
  * Created by dron on 12.03.17.
  */
 
-public interface Module1Decorator extends IDecorator {
+public interface IModule1Decorator extends IDecorator {
     void setItems(List<TodoListItem> items);
 }
